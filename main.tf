@@ -1,10 +1,10 @@
-resource "aws_instance" "example" {
-    ami = "ami-0d5bb3742db8fc264"
-    instance_type = "t2.micro"
+# resource "aws_instance" "example" {
+#     ami = "ami-0d5bb3742db8fc264"
+#     instance_type = "t2.micro"
 
-    # Attach the instance profile
-    iam_instance_profile = aws_iam_instance_profile.instance.name
-}
+#     # Attach the instance profile
+#     iam_instance_profile = aws_iam_instance_profile.instance.name
+# }
 
 resource "aws_iam_instance_profile" "instance" {
     role = aws_iam_role.instance.name

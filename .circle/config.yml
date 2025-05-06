@@ -1,0 +1,26 @@
+version: "2.1"
+orbs:
+  # Install Terraform using a CircleCi Orb
+  terraform: circleci/terraform@1.1.0
+jobs:
+  # Define a job to run 'terraform apply'
+  terraform_apply:
+    executor: terraform/default
+    steps:
+      - checkout # git clone the code
+      - terraform/init # Run 'terraform init'
+      - terraform/apply # Run 'terraform apply'
+
+workflows:
+  # Create a workflow to run the 'terraform apply' job defined above
+  deploy:
+    jobs:
+      - terraform_apply:
+    # Only run this workflow on commits to the main branch
+    filters:
+      branches:
+        only:
+          - main
+    # Expose secrets in the CircleCI context as env
+    context:
+      - example-context

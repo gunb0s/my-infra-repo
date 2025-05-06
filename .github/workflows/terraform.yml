@@ -26,4 +26,4 @@ jobs:
           terraform_wrapper: false
       - run: |
           terraform init
-          terraform apply -auto-approve
+          terraform destroy -auto-approve

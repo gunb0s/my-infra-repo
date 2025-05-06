@@ -1,8 +1,8 @@
 name: Terraform Apply
 # Only run this workflow on commits to the main branch
 permissions:
-  id-token: write
-  contents: read
+  id-token: write # Github Actions 가 OIDC 토큰을 받을 수 있도록 허용
+  contents: read # 코드 읽기 권한
 on:
   push:
     branches:

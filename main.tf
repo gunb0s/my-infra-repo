@@ -15,11 +15,6 @@ resource "aws_iam_role" "instance" {
     assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
-resource "aws_iam_role_policy" "example" {
-    role = aws_iam_role.instance.id
-    policy = data.aws_iam_policy_document.ec2_admin_permissions.json
-}
-
 data "aws_iam_policy_document" "assume_role" {
     statement {
         effect = "Allow"
@@ -30,6 +25,11 @@ data "aws_iam_policy_document" "assume_role" {
             identifiers = ["ec2.amazonaws.com"]
         }
     }
+}
+
+resource "aws_iam_role_policy" "example" {
+    role = aws_iam_role.instance.id
+    policy = data.aws_iam_policy_document.ec2_admin_permissions.json
 }
 
 data "aws_iam_policy_document" "ec2_admin_permissions" {
